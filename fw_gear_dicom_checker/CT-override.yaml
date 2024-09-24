@@ -1,0 +1,26 @@
+---
+name: CT tagger
+
+profile:
+  - name: Computed Tomography
+    description: |
+      Set tag if Modality is CT
+    variables:
+      fihd: file.info.header.dicom
+      ft: file.tags
+    rules:
+      - match_type: all
+        match:
+          - key: $fihd.Modality
+            is: CT
+        action:
+          - key: $ft
+            add: "computed-tomography-pass"
+      - match_type: all
+        match:
+          - not:
+              - key: $fihd.Modality
+                is: CV
+        action:
+          - key: $ft
+            add: "computed-tomography-fail"

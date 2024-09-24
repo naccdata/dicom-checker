@@ -1,0 +1,99 @@
+{
+  "author": "Flywheel",
+  "cite": "",
+  "command": "python run.py",
+  "config": {
+    "debug": {
+      "default": false,
+      "description": "Log debug messages",
+      "type": "boolean"
+    },
+    "tag_prefix": {
+      "default": "dicom-checker",
+      "description": "Append '-pass' or '-fail' to <tag_prefix> to generate the Flywheel tag to be placed on the input file.",
+      "type": "string"
+    }
+  },
+  "custom": {
+    "flywheel": {
+      "classification": {
+        "function": [
+          "Utility"
+        ],
+        "modality": [
+          "MR",
+          "PT",
+          "MG",
+          "CT"
+        ],
+        "organ": [
+          "Any"
+        ],
+        "species": [
+          "Phantom",
+          "Human",
+          "Animal"
+        ],
+        "therapeutic_area": [
+          "Any"
+        ]
+      },
+      "show-job": true,
+      "suite": "Utility"
+    },
+    "gear-builder": {
+      "category": "utility",
+      "image": "flywheel/dicom_checker:0.1.2"
+    }
+  },
+  "description": "This gear opens a DICOM file, checks some of the DICOM tags, and then set a Flywheel tag on the input file based on whether the checks pass or fail. The gear checks are configurable.",
+  "environment": {
+    "PYTHON_PIP_VERSION": "24.2",
+    "GPG_KEY": "7169605F62C751356D054A26A821E680E5FA6305",
+    "FLYWHEEL": "/flywheel/v0",
+    "PYTHON_GET_PIP_URL": "https://github.com/pypa/get-pip/raw/def4aec84b261b939137dd1c69eff0aabb4a7bf4/public/get-pip.py",
+    "PATH": "/venv/bin:/opt/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LANG": "C.UTF-8",
+    "PYTHON_VERSION": "3.12.6",
+    "PYTHON_SETUPTOOLS_VERSION": "65.5.1",
+    "PWD": "/flywheel/v0",
+    "PYTHON_GET_PIP_SHA256": "bc37786ec99618416cc0a0ca32833da447f4d91ab51d2c138dd15b7af21e8e9a",
+    "SHLVL": "1",
+    "EGET_BIN": "/opt/bin",
+    "VIRTUAL_ENV": "/venv",
+    "UV_NO_CACHE": "1",
+    "PYTHONPATH": "/venv/lib/python/site-packages",
+    "TZ": "UTC",
+    "EDITOR": "micro"
+  },
+  "inputs": {
+    "api-key": {
+      "base": "api-key",
+      "read-only": true
+    },
+    "dicom_file": {
+      "base": "file",
+      "description": "File to check"
+    },
+    "override_checks": {
+      "base": "file",
+      "description": "A set of DICOM tags to use instead of the defaults",
+      "optional": true,
+      "type": {
+        "enum": [
+          "source code"
+        ]
+      }
+    }
+  },
+  "label": "DICOM Checker",
+  "license": "MIT",
+  "maintainer": "Flywheel <support@flywheel.io>",
+  "name": "dicom-checker",
+  "output_configuration": {
+    "enforce_file_version_match": true
+  },
+  "source": "https://gitlab.com/flywheel-io/scientific-solutions/gears/dicom-checker",
+  "url": "https://gitlab.com/flywheel-io/scientific-solutions/gears/dicom-checker",
+  "version": "0.1.2"
+}
