@@ -1,9 +1,10 @@
 include:
   - project: flywheel-io/tools/etc/qa-ci
-    ref: 7b9cfce9191494dd612d0cf0c2adf69cecd2ae3a
+    ref: 733a34273433aedacf8aa5c56bc08e61e11d4893
     file: ci/gear.yml
 
 variables:
+  PYVER: "3.11"
   PYTEST_COV_FAIL_UNDER: 0  # Set pytest coverage to 0
   DEBUG: ""  # Set debug mode to print out executed command on qa-ci
   PUBLISH_POETRY: "false"  # Set to true to allow CI to publish package to PYPI

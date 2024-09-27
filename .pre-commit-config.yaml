@@ -1,6 +1,6 @@
 repos:
   - repo: https://gitlab.com/flywheel-io/tools/etc/qa-ci
-    rev: 7b9cfce9191494dd612d0cf0c2adf69cecd2ae3a
+    rev: 733a34273433aedacf8aa5c56bc08e61e11d4893
     hooks:
       - id: poetry_export
       - id: gearcheck

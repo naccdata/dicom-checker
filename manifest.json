@@ -43,7 +43,7 @@
     },
     "gear-builder": {
       "category": "utility",
-      "image": "flywheel/dicom_checker:0.1.2"
+      "image": "flywheel/dicom_checker:0.1.3"
     }
   },
   "description": "This gear opens a DICOM file, checks some of the DICOM tags, and then set a Flywheel tag on the input file based on whether the checks pass or fail. The gear checks are configurable.",
@@ -95,5 +95,5 @@
   },
   "source": "https://gitlab.com/flywheel-io/scientific-solutions/gears/dicom-checker",
   "url": "https://gitlab.com/flywheel-io/scientific-solutions/gears/dicom-checker",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

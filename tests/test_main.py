@@ -5,9 +5,16 @@ from unittest.mock import MagicMock, patch
 
 from fw_gear_dicom_checker.main import run
 
-RETURNED_METADATA = {
+INITIAL_METADATA = {
     "file": {
         "info": {"header": {"dicom": {"FileMetaInformationGroupLength": 206}}},
+        "type": "dicom",
+        "tags": ["im-just-a-tag"],
+    }
+}
+
+RETURNED_METADATA = {
+    "file": {
         "type": "dicom",
         "tags": ["im-just-a-tag"],
     }
@@ -47,7 +54,7 @@ class Adapter:
         self.file = file
 
     def classify(self, arg):
-        return RETURNED_METADATA
+        return INITIAL_METADATA
 
 
 @patch("fw_gear_dicom_checker.main.available_adapters")
@@ -65,7 +72,6 @@ def test_run(mock_adapter):
         Path(__file__).resolve().parent.parent / "fw_gear_dicom_checker/default.yaml"
     )
 
-    # Assuming the 'run' function is imported or defined elsewhere
     result = run(dicom_file, profile_path, "some-stringy-string")
 
     assert result == RETURNED_METADATA

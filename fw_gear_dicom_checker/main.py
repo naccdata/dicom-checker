@@ -46,4 +46,14 @@ def run(
     classifier = cls(dicom_file["location"]["path"])
     result = classifier.classify(instantiated_profile_path)
 
+    # first make sure no DICOM header data is in the result
+    if "info" in result["file"]:
+        if "header" in result["file"]["info"]:
+            if "dicom" in result["file"]["info"]["header"]:
+                del result["file"]["info"]["header"]["dicom"]
+                if len(result["file"]["info"]["header"]) == 0:
+                    del result["file"]["info"]["header"]
+                    if len(result["file"]["info"]) == 0:
+                        del result["file"]["info"]
+
     return result
