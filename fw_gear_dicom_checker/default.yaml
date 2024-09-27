@@ -1,0 +1,26 @@
+---
+name: MR tagger
+
+profile:
+  - name: Magnetic Resonance
+    description: |
+      Set tag if Modality is MR
+    variables:
+      fihd: file.info.header.dicom
+      ft: file.tags
+    rules:
+      - match_type: all
+        match:
+          - key: $fihd.Modality
+            is: MR
+        action:
+          - key: $ft
+            add: "{{ tag_prefix }}-pass"
+      - match_type: all
+        match:
+          - not:
+              - key: $fihd.Modality
+                is: MR
+        action:
+          - key: $ft
+            add: "{{ tag_prefix }}-fail"
