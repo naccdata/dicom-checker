@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fw-gear-dicom-checker"
-version = "0.1.0"
+version = "0.1.4"
 description = "This gear opens a DICOM file, checks some of the DICOM tags, and then set a Flywheel tag on the input file based on whether the checks pass or fail. The gear checks are configurable."
 authors = ["Flywheel <support@flywheel.io>"]
 readme = "README.md"
