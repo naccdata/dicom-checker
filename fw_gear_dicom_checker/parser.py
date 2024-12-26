@@ -31,7 +31,8 @@ def parse_config(
         log.info("Using default profile")
         profile_path = Path(__file__).resolve().parent / "default.yaml"
 
-    profile_path.parts[-2:]
     tag_prefix = gear_context.config["tag_prefix"]
 
-    return dicom_file, profile_path, tag_prefix
+    keep_existing_tags = gear_context.config["keep_existing_tags"]
+
+    return dicom_file, profile_path, tag_prefix, keep_existing_tags

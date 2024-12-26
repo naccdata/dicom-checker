@@ -26,13 +26,22 @@ def main(context: GearToolkitContext) -> None:  # pragma: no cover
     """Parse gear config and run."""
     # Call parse_config to extract the args, kwargs from the context
     # (e.g. config.json).
-    dicom_file, profile_path, tag_prefix = parse_config(context)
+    dicom_file, profile_path, tag_prefix, keep_existing_tags = parse_config(context)
+
+    existing_tags = []
+    if keep_existing_tags:
+        log.info("Keeping existing tags")
+        existing_tags = dicom_file["object"]["tags"]
 
     # Pass the args, kwargs to fw_gear_dicom_checker.main.run function to execute
     # the main functionality of the gear.
     result = run(dicom_file, profile_path, tag_prefix)
 
     if result:
+        if keep_existing_tags:
+            result["file"]["tags"] = list(
+                set(result["file"]["tags"]).union(existing_tags)
+            )
         context.metadata.update_file_metadata(
             dicom_file, True, "acquisition", **result["file"]
         )
