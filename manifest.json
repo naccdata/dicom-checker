@@ -63,7 +63,7 @@
     "PYTHON_SETUPTOOLS_VERSION": "65.5.1",
     "PWD": "/flywheel/v0",
     "PYTHON_GET_PIP_SHA256": "bc37786ec99618416cc0a0ca32833da447f4d91ab51d2c138dd15b7af21e8e9a",
-    "SHLVL": "0",
+    "SHLVL": "1",
     "EGET_BIN": "/opt/bin",
     "VIRTUAL_ENV": "/venv",
     "UV_NO_CACHE": "1",
@@ -71,10 +71,10 @@
     "TZ": "UTC",
     "EDITOR": "micro",
     "PYTHON_SHA256": "c909157bb25ec114e5869124cc2a9c4a4d4c1e957ca4ff553f1edc692101154e",
-    "BUILD_TIME": "2024-12-21T07:41:10Z",
+    "BUILD_TIME": "2025-01-11T07:41:00Z",
     "COMMIT_REF": "main",
     "COMMIT_SHA": "fea92b8d",
-    "CI_JOB_URL": "https://gitlab.com/flywheel-io/tools/img/python/-/jobs/8703890190",
+    "CI_JOB_URL": "https://gitlab.com/flywheel-io/tools/img/python/-/jobs/8825957801",
     "_": "/bin/printenv"
   },
   "inputs": {

@@ -7,7 +7,12 @@ from fw_gear_dicom_checker.main import run
 
 INITIAL_METADATA = {
     "file": {
-        "info": {"header": {"dicom": {"FileMetaInformationGroupLength": 206}}},
+        "info": {
+            "header": {
+                "dicom": {"FileMetaInformationGroupLength": 206},
+                "dicom_array": {"AcquisitionTime": [0]},
+            }
+        },
         "type": "dicom",
         "tags": ["im-just-a-tag"],
     }
