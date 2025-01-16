@@ -1,13 +1,18 @@
 """Module to test main.py"""
 
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from fw_gear_dicom_checker.main import run
 
 INITIAL_METADATA = {
     "file": {
-        "info": {"header": {"dicom": {"FileMetaInformationGroupLength": 206}}},
+        "info": {
+            "header": {
+                "dicom": {"FileMetaInformationGroupLength": 206},
+                "dicom_array": {"AcquisitionTime": [0]},
+            }
+        },
         "type": "dicom",
         "tags": ["im-just-a-tag"],
     }
@@ -67,7 +72,7 @@ def test_run(mock_adapter):
         "object": {"type": "dicom"},
         "location": {"path": "whatever"},
     }
-    MagicMock()
+
     profile_path = (
         Path(__file__).resolve().parent.parent / "fw_gear_dicom_checker/default.yaml"
     )

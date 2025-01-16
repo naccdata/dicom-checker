@@ -16,15 +16,19 @@ def test_parse_config_works():
     gear_context.output_dir = Path("/output/shmoutput")
     gear_context.config = {
         "tag_prefix": "tag_prefix",
+        "keep_existing_tags": False,
     }
 
-    dicom_file, profile_path, tag_prefix = parse_config(gear_context)
+    dicom_file, profile_path, tag_prefix, keep_existing_tags = parse_config(
+        gear_context
+    )
 
     assert gear_context.get_input.call_count == 1
     assert gear_context.get_input_path.call_count == 1
     assert dicom_file == "dicom file"
     assert profile_path == Path("somewhere")
     assert tag_prefix == "tag_prefix"
+    assert keep_existing_tags is False
 
 
 def test_parse_config_no_profile_works():
@@ -35,12 +39,16 @@ def test_parse_config_no_profile_works():
     gear_context.output_dir = Path("/output/shmoutput")
     gear_context.config = {
         "tag_prefix": "tag_prefix",
+        "keep_existing_tags": True,
     }
 
-    dicom_file, profile_path, tag_prefix = parse_config(gear_context)
+    dicom_file, profile_path, tag_prefix, keep_existing_tags = parse_config(
+        gear_context
+    )
 
     assert gear_context.get_input.call_count == 1
     assert gear_context.get_input_path.call_count == 1
     assert dicom_file == "dicom file"
     assert profile_path.parts[-2:] == ("fw_gear_dicom_checker", "default.yaml")
     assert tag_prefix == "tag_prefix"
+    assert keep_existing_tags is True

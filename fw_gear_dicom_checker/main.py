@@ -46,14 +46,15 @@ def run(
     classifier = cls(dicom_file["location"]["path"])
     result = classifier.classify(instantiated_profile_path)
 
-    # first make sure no DICOM header data is in the result
-    if "info" in result["file"]:
-        if "header" in result["file"]["info"]:
-            if "dicom" in result["file"]["info"]["header"]:
-                del result["file"]["info"]["header"]["dicom"]
-                if len(result["file"]["info"]["header"]) == 0:
-                    del result["file"]["info"]["header"]
-                    if len(result["file"]["info"]) == 0:
-                        del result["file"]["info"]
+    # first make sure no DICOM header data is in the result to be sure no PHI is leaked
+    if "header" in result["file"]["info"]:
+        if "dicom" in result["file"]["info"]["header"]:
+            del result["file"]["info"]["header"]["dicom"]
+        if "dicom_array" in result["file"]["info"]["header"]:
+            del result["file"]["info"]["header"]["dicom_array"]
+        if len(result["file"]["info"]["header"]) == 0:
+            del result["file"]["info"]["header"]
+            if len(result["file"]["info"]) == 0:
+                del result["file"]["info"]
 
     return result
